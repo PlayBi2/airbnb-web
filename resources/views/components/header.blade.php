@@ -40,18 +40,39 @@
                     <div class="absolute z-10 w-96 bg-white shadow-searchForm border-solid border-[1px] border-[#dddddd] right-0 top-full rounded-lg overflow-hidden mt-2"
                         x-show="open" @click.outside="open = false">
                         @auth
-                            <div class="border-b-[1px] border-solid border-[#dddddd]">
-                                <a href="/detail-user"
-                                    class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
-                                    {{ auth()->user()->fullname }}
-                                </a>
-                                <form action="/logout" method="post" class="block">
-                                    @csrf
-                                    <input type="submit"
-                                        class="block w-full px-4 py-3 font-medium text-left text-sm transition-all ease-linear hover:bg-[#f7f7f7]"
-                                        value="Đăng xuất" />
-                                </form>
-                            </div>
+                            @if (auth()->user()->role === 'admin')
+                                <div class="border-b-[1px] border-solid border-[#dddddd]">
+                                    <a href="/admin/manage-user"
+                                        class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                        Quản lý tài khoản
+                                    </a>
+                                </div>
+                                <div class="border-b-[1px] border-solid border-[#dddddd]">
+                                    <a href="/detail-user"
+                                        class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                        {{ auth()->user()->fullname }}
+                                    </a>
+                                    <form action="/logout" method="post" class="block">
+                                        @csrf
+                                        <input type="submit"
+                                            class="block cursor-pointer w-full px-4 py-3 font-medium text-left text-sm transition-all ease-linear hover:bg-[#f7f7f7]"
+                                            value="Đăng xuất" />
+                                    </form>
+                                </div>
+                            @else
+                                <div class="border-b-[1px] border-solid border-[#dddddd]">
+                                    <a href="/detail-user"
+                                        class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                        {{ auth()->user()->fullname }}
+                                    </a>
+                                    <form action="/logout" method="post" class="block">
+                                        @csrf
+                                        <input type="submit"
+                                            class="block cursor-pointer w-full px-4 py-3 font-medium text-left text-sm transition-all ease-linear hover:bg-[#f7f7f7]"
+                                            value="Đăng xuất" />
+                                    </form>
+                                </div>
+                            @endif
                         @else
                             <div class="border-b-[1px] border-solid border-[#dddddd]">
                                 <a href="/login"

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ManageUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,10 @@ Route::get('/register', [LoginController::class, 'create'])->middleware('guest')
 Route::post('/register', [LoginController::class, 'register'])->middleware('guest');
 
 Route::post('/logout',[LoginController::class, 'destroy']);
+
+
+Route::prefix('/admin')->middleware('phanquyen')->group(function (){
+
+    Route::get('/manage-user', [ManageUser::class, 'show']);
+    Route::post('/update-status',[ManageUser::class, 'update']);
+});

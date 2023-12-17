@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        User::create([
+            'fullname' => 'admin',
+            'email' => 'admin@gmail.com',
+            'phone' => '1231231231',
+            'address' => 'admin',
+            'password' => 'admin',
+            'role' => 'admin',
+            'status' => 1
+        ]);
     }
 }

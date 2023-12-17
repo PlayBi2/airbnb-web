@@ -11,13 +11,11 @@ class LoginController extends Controller
     public function show()
     {
 
-
         return view('pages.login');
     }
 
     public function create()
     {
-
 
         return view('pages.register');
     }
@@ -25,7 +23,7 @@ class LoginController extends Controller
     public function login(){
         $req = request()->validate([
             'email' => 'required|nullable',
-            'password' => 'required|min:6|max:20',
+            'password' => 'required|min:5|max:20',
         ]);
         if(Auth::attempt($req)){
             return redirect('/')->with('flash','Đăng nhập thành công!');
