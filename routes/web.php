@@ -33,3 +33,8 @@ Route::prefix('/admin')->middleware('phanquyen')->group(function (){
     Route::get('/manage-user', [ManageUser::class, 'show']);
     Route::post('/update-status',[ManageUser::class, 'update']);
 });
+
+
+Route::get('/product',function () {
+  return view('pages.product');
+});
