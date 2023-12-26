@@ -20,6 +20,7 @@
                     boxShadow: {
                         searchForm: "0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)",
                         searchFormHover: "0 0 0 1px rgba(0,0,0,0.18)",
+                        itemBox: 'rgba(0, 0, 0, 0.12) 0px 6px 16px'
                     },
                     textColor: {
                         baseColor: "#444",
@@ -28,6 +29,9 @@
                     backgroundColor: {
                         hoverBg: "#F7F7F7",
                     },
+                    gridTemplateColumns: {
+                        '8_4': '2fr 1fr'
+                    }
                 },
             }
         }

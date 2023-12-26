@@ -48,10 +48,16 @@
                                     </a>
                                 </div>
                                 <div class="border-b-[1px] border-solid border-[#dddddd]">
-                                    <a href="/detail-user"
+                                    <a href="/user/detail-account"
                                         class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
                                         {{ auth()->user()->fullname }}
                                     </a>
+                                    @auth
+                                        <a href="/user/change-password"
+                                            class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                            Đổi mật khẩu
+                                        </a>
+                                    @endauth
                                     <form action="/logout" method="post" class="block">
                                         @csrf
                                         <input type="submit"
@@ -61,10 +67,16 @@
                                 </div>
                             @else
                                 <div class="border-b-[1px] border-solid border-[#dddddd]">
-                                    <a href="/detail-user"
+                                    <a href="/user/detail-account"
                                         class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
                                         {{ auth()->user()->fullname }}
                                     </a>
+                                    @auth
+                                        <a href="/user/change-password"
+                                            class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                            Đổi mật khẩu
+                                        </a>
+                                    @endauth
                                     <form action="/logout" method="post" class="block">
                                         @csrf
                                         <input type="submit"

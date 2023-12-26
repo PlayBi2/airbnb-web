@@ -2,28 +2,25 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManageUser;
-use App\Http\Controllers\Product;
 use App\Http\Controllers\Renter;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+
+
+
 
 Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('/login', [LoginController::class, 'show'])->middleware('guest');
-Route::post('/login',[LoginController::class, 'login'])->middleware('guest');
-
-Route::get('/register', [LoginController::class, 'create'])->middleware('guest');
-Route::post('/register', [LoginController::class, 'register'])->middleware('guest');
-
-Route::post('/logout',[LoginController::class, 'destroy']);
-
-
-Route::prefix('/admin')->middleware('phanquyen')->group(function (){
-
-    Route::get('/manage-user', [ManageUser::class, 'show']);
-    Route::post('/update-status',[ManageUser::class, 'update']);
+Route::prefix('/')->middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'show']);
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/register', [LoginController::class, 'create']);
+    Route::post('/register', [LoginController::class, 'register']);
 });
+
 
 
 Route::get('/product',function () {
@@ -46,3 +43,18 @@ Route::get('/new-product',function () {
 
     // Route::post('/update-status',[Product::class, 'new-product']);
 });
+
+Route::prefix('/admin')->middleware('phanquyen')->group(function () {
+    Route::get('/manage-user', [ManageUser::class, 'show']);
+    Route::post('/update-status', [ManageUser::class, 'update']);
+    Route::get('/add-user',[ManageUser::class, 'addUserPage']);
+    Route::post('/add-user',[ManageUser::class, 'addUser']);
+});
+
+Route::prefix('user')->middleware('auth')->group(function (){
+    Route::get('/detail-account',[UserController::class, 'accountUser']);
+    Route::get('/detail-user',[UserController::class, 'detailUser']);
+    Route::get('/change-password',[UserController::class, 'changePasswordPage']);
+    Route::post('change-password',[UserController::class, 'updatePassword']);
+});
+Route::post('/logout', [LoginController::class, 'destroy']);
