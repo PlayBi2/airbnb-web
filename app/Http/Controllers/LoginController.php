@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Auth;
+// use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -20,15 +24,18 @@ class LoginController extends Controller
         return view('pages.register');
     }
 
-    public function login(){
+    public function login()
+    {
         $req = request()->validate([
             'email' => 'required|nullable',
             'password' => 'required|min:5|max:20',
         ]);
-        if(Auth::attempt($req)){
-            return redirect('/')->with('flash','Đăng nhập thành công!');
-        }else{
-            return redirect('/login')->with('error', 'Oppes! You have entered invalid credentials');
+        $email = request()->all()['email'];
+        $password = request()->all()['password'];
+        if (Auth::attempt(['email'=>$email, 'password'=>$password, 'status'=>1])) {
+            return redirect('/')->with('flash', 'Đăng nhập thành công!');
+        } else {
+            return back()->with('error', 'Oppes! You have entered invalid credentials');
         }
     }
 
@@ -43,10 +50,11 @@ class LoginController extends Controller
         ]);
         $user = User::create($req);
 
-        return redirect('/register')->with('flash','Đăng ký tài khoản thành công');
+        return redirect('/register')->with('flash', 'Đăng ký tài khoản thành công');
     }
 
-    public function destroy(){
+    public function destroy()
+    {
         auth()->logout();
         return redirect('/');
     }
