@@ -31,13 +31,17 @@ Route::get('/product',function () {
 Route::post('/for-renter', [Renter::class, 'show_renter']);
 Route::resource('pages', Renter::class);
 Route::get('/for-renter',[Renter::class, 'show_renter']);
+// Route::get('/for-renter',function () {
+//   return view('pages.renter');
+// });
 
 // Route::post('/for-renter', [Product::class, 'show_renter']);
 // Content_renter
 Route::prefix('/for-renter')->group(function (){
     Route::get('/new-product', [Renter::class, 'new-product']);
     Route::post('/new-product', [Renter::class, 'create']);
-Route::get('/new-product',function () {
+    Route::get('/new-product',function () {
+
   return view('pages.content-renter');
 });
 

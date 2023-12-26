@@ -129,50 +129,47 @@
                             <tbody>
 
                                 @isset($productModel)
-                                    @if (!empty($productModel))
-                                        @foreach ($productModel as $temp)
-                                            <tr class="border-solid border-b border-3 border-red-500">
-                                                <td class="px-6 py-4 text-center">
-                                                    {{ $temp->id }}
-                                                </td>
-                                                <td class="px-6 py-4 text-center">
-                                                    <img src="" width="150px" height="130px" alt=""
-                                                        class="rounded-xl" />
-                                                </td>
-                                                <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
-                                                    {{ $temp->name }}
-                                                </th>
-                                                <td class="px-6 py-4">
-                                                    White
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    {{ $temp->area }}
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    <div class="flex items-end">
-                                                        <div
-                                                            class="text-white bg-red-500  font-medium rounded-lg text-sm px-4 py-1.5 me-2 mb-2 shadow-lg focus:outline-none dark:focus:ring-blue-800">
-                                                            {{ $temp->rented }}</div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    {{ $temp->price_per_month }}
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    {{ $temp->price }}
-                                                </td>
-                                                <td class="px-6 py-4">
-                                                    <div class="flex items-end">
-                                                        <button type="button"
-                                                            class="text-white bg-red-500  font-medium rounded-lg text-xs px-4 py-1.5 me-2 mb-2 shadow-lg focus:outline-none dark:focus:ring-blue-800">Chi
-                                                            tiết</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @else
-                                        <tr>No product data available.</tr>
-                                    @endif
+
+                                    @foreach ($productModel as $temp)
+                                        <tr class="border-solid border-b border-3 border-red-500">
+                                            <td class="px-6 py-4 text-center">
+                                                {{ $temp->id }}
+                                            </td>
+                                            <td class="px-6 py-4 text-center">
+                                                <img src="" width="150px" height="130px" alt=""
+                                                    class="rounded-xl" />
+                                            </td>
+                                            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
+                                                {{ $temp->name }}
+                                            </th>
+                                            <td class="px-6 py-4">
+                                                White
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $temp->area }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-end">
+                                                    <div
+                                                        class="text-white bg-red-500  font-medium rounded-lg text-sm px-4 py-1.5 me-2 mb-2 shadow-lg focus:outline-none dark:focus:ring-blue-800">
+                                                        {{ $temp->rented }}</div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $temp->price_per_month }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $temp->price }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                <div class="flex items-end">
+                                                    <button type="button"
+                                                        class="text-white bg-red-500  font-medium rounded-lg text-xs px-4 py-1.5 me-2 mb-2 shadow-lg focus:outline-none dark:focus:ring-blue-800">Chi
+                                                        tiết</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 @else
                                     <tr>No product data available.</tr>
                                 @endisset

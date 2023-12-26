@@ -21,7 +21,7 @@
                 </form>
             </div>
             <div class="flex items-center text-sm">
-                <a href=""
+                <a href="/for-renter"
                     class="block transition-all ease-linear hover:bg-[#f7f7f7] mx-1 py-2 px-3 rounded-full">Cho thuê chỗ
                     ở qua Airbnb</a>
                 <div>
@@ -96,7 +96,7 @@
                             </div>
                         @endauth
                         <div>
-                            <a href=""
+                            <a href="/for-renter"
                                 class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Cho
                                 thuê chỗ ở qua Airbnb</a>
                             <a href=""
