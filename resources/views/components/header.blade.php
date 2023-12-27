@@ -21,92 +21,95 @@
                 </form>
             </div>
             <div class="flex items-center text-sm">
-                <a href="/for-renter"
-                    class="block transition-all ease-linear hover:bg-[#f7f7f7] mx-1 py-2 px-3 rounded-full">Cho thuê chỗ
-                    ở qua Airbnb</a>
-                <div>
-                    <button class="px-3 py-2 transition-all ease-linear hover:bg-[#f7f7f7] mx-1 rounded-full"><i
-                            class="fa-solid fa-globe"></i></button>
-                </div>
-                <div class="relative" x-data="{ open: false }">
-                    <button
-                        class="flex items-center text-lg transition-all ease-linear hover:bg-[#f7f7f7] ml-2 px-4 py-1 rounded-full"
-                        @click="open=!open">
-                        <span class="mr-2 pr-2">
-                            <i class="fa-solid fa-bars"></i>
-                        </span>
-                        <span class="text-2xl"><i class="fa-solid fa-circle-user"></i></span>
-                    </button>
-                    <div class="absolute z-10 w-96 bg-white shadow-searchForm border-solid border-[1px] border-[#dddddd] right-0 top-full rounded-lg overflow-hidden mt-2"
-                        x-show="open" @click.outside="open = false">
-                        @auth
-                            @if (auth()->user()->role === 'admin')
-                                <div class="border-b-[1px] border-solid border-[#dddddd]">
-                                    <a href="/admin/manage-user"
+                @if (auth()->user())
+                    <a href="/for-renter"
+                        class="block transition-all ease-linear hover:bg-[#f7f7f7] mx-1 py-2 px-3 rounded-full">Cho thuê
+                        chỗ
+                        ở qua Airbnb</a>
+                    <div>
+                @endif
+                <button class="px-3 py-2 transition-all ease-linear hover:bg-[#f7f7f7] mx-1 rounded-full"><i
+                        class="fa-solid fa-globe"></i></button>
+            </div>
+            <div class="relative" x-data="{ open: false }">
+                <button
+                    class="flex items-center text-lg transition-all ease-linear hover:bg-[#f7f7f7] ml-2 px-4 py-1 rounded-full"
+                    @click="open=!open">
+                    <span class="mr-2 pr-2">
+                        <i class="fa-solid fa-bars"></i>
+                    </span>
+                    <span class="text-2xl"><i class="fa-solid fa-circle-user"></i></span>
+                </button>
+                <div class="absolute z-10 w-96 bg-white shadow-searchForm border-solid border-[1px] border-[#dddddd] right-0 top-full rounded-lg overflow-hidden mt-2"
+                    x-show="open" @click.outside="open = false">
+                    @auth
+                        @if (auth()->user()->role === 'admin')
+                            <div class="border-b-[1px] border-solid border-[#dddddd]">
+                                <a href="/admin/manage-user"
+                                    class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                    Quản lý tài khoản
+                                </a>
+                            </div>
+                            <div class="border-b-[1px] border-solid border-[#dddddd]">
+                                <a href="/user/detail-account"
+                                    class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                    {{ auth()->user()->fullname }}
+                                </a>
+                                @auth
+                                    <a href="/user/change-password"
                                         class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
-                                        Quản lý tài khoản
+                                        Đổi mật khẩu
                                     </a>
-                                </div>
-                                <div class="border-b-[1px] border-solid border-[#dddddd]">
-                                    <a href="/user/detail-account"
-                                        class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
-                                        {{ auth()->user()->fullname }}
-                                    </a>
-                                    @auth
-                                        <a href="/user/change-password"
-                                            class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
-                                            Đổi mật khẩu
-                                        </a>
-                                    @endauth
-                                    <form action="/logout" method="post" class="block">
-                                        @csrf
-                                        <input type="submit"
-                                            class="block cursor-pointer w-full px-4 py-3 font-medium text-left text-sm transition-all ease-linear hover:bg-[#f7f7f7]"
-                                            value="Đăng xuất" />
-                                    </form>
-                                </div>
-                            @else
-                                <div class="border-b-[1px] border-solid border-[#dddddd]">
-                                    <a href="/user/detail-account"
-                                        class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
-                                        {{ auth()->user()->fullname }}
-                                    </a>
-                                    @auth
-                                        <a href="/user/change-password"
-                                            class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
-                                            Đổi mật khẩu
-                                        </a>
-                                    @endauth
-                                    <form action="/logout" method="post" class="block">
-                                        @csrf
-                                        <input type="submit"
-                                            class="block cursor-pointer w-full px-4 py-3 font-medium text-left text-sm transition-all ease-linear hover:bg-[#f7f7f7]"
-                                            value="Đăng xuất" />
-                                    </form>
-                                </div>
-                            @endif
+                                @endauth
+                                <form action="/logout" method="post" class="block">
+                                    @csrf
+                                    <input type="submit"
+                                        class="block cursor-pointer w-full px-4 py-3 font-medium text-left text-sm transition-all ease-linear hover:bg-[#f7f7f7]"
+                                        value="Đăng xuất" />
+                                </form>
+                            </div>
                         @else
                             <div class="border-b-[1px] border-solid border-[#dddddd]">
-                                <a href="/login"
-                                    class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Đăng
-                                    nhập</a>
-                                <a href="/register"
-                                    class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Đăng
-                                    ký</a>
+                                <a href="/user/detail-account"
+                                    class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                    {{ auth()->user()->fullname }}
+                                </a>
+                                @auth
+                                    <a href="/user/change-password"
+                                        class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">
+                                        Đổi mật khẩu
+                                    </a>
+                                @endauth
+                                <form action="/logout" method="post" class="block">
+                                    @csrf
+                                    <input type="submit"
+                                        class="block cursor-pointer w-full px-4 py-3 font-medium text-left text-sm transition-all ease-linear hover:bg-[#f7f7f7]"
+                                        value="Đăng xuất" />
+                                </form>
                             </div>
-                        @endauth
-                        <div>
-                            <a href="/for-renter"
-                                class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Cho
-                                thuê chỗ ở qua Airbnb</a>
-                            <a href=""
-                                class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Cho
-                                Trung tâm trợ giúp</a>
-
+                        @endif
+                    @else
+                        <div class="border-b-[1px] border-solid border-[#dddddd]">
+                            <a href="/login"
+                                class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Đăng
+                                nhập</a>
+                            <a href="/register"
+                                class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Đăng
+                                ký</a>
                         </div>
+                    @endauth
+                    <div>
+                        <a href="/for-renter"
+                            class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Cho
+                            thuê chỗ ở qua Airbnb</a>
+                        <a href=""
+                            class="block w-full px-4 py-3 font-medium text-sm transition-all ease-linear hover:bg-[#f7f7f7]">Cho
+                            Trung tâm trợ giúp</a>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
